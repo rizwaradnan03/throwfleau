@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://xd0cfql6cmga"]
+[gd_scene load_steps=3 format=3 uid="uid://xd0cfql6cmga"]
 
 [ext_resource type="Script" uid="uid://bb46v0b4f7ydm" path="res://scripts/Main.cs" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bylywcf01hi0" path="res://objects/allys/knight.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_o5qli")
+
+[node name="Knight" parent="." instance=ExtResource("2_0wfyh")]
