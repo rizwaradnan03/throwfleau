@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="throwfleau"
-run/main_scene="uid://xd0cfql6cmga"
+run/main_scene="uid://csco3qbyltac8"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 

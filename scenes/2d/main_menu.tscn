@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://csco3qbyltac8"]
+
+[ext_resource type="Script" uid="uid://bmq8kjk4n5yvf" path="res://scripts/MainMenu.cs" id="1_u8e5w"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u8e5w")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -52.0
+offset_top = -32.0
+offset_right = 51.0
+offset_bottom = 38.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 98.0
+offset_bottom = 28.0
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "ThrowFleau"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
