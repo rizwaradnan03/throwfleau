@@ -1,15 +1,20 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public class Character
 {
+    public string id;
     private int health;
     private string type;
     private string target;
     private int damage;
 
+    List<Character> targets = new List<Character>();
+
     public Character(string PType, int PHealth, int PDamage)
     {
+        id = Guid.NewGuid().ToString();
         type = PType;
         health = PHealth;
         damage = PDamage;
@@ -27,6 +32,11 @@ public class Character
     public int Health()
     {
         return health;
+    }
+
+    public string Id()
+    {
+        return id;
     }
 
     public int Damage()
@@ -59,10 +69,39 @@ public class Character
         return false;
     }
 
-    public bool DecrementHealth(int damage)
+    public (bool isDead, string id) DecrementHealth(int damage)
     {
         health -= damage;
 
-        return CheckIsDead();
+        bool checkIsDead = CheckIsDead();
+
+        return (checkIsDead, Id());
+    }
+
+    public void RealizingTarget(Character[] currentTargets)
+    {
+        for (int i = 0; i < currentTargets.Length; i++)
+        {
+            bool isFound = false;
+
+            for (int j = 0; j < targets.Count; j++)
+            {
+                if (targets[j].Id() == currentTargets[i].Id())
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+
+            if (isFound == false)
+            {
+                targets.Add(currentTargets[i]);
+            }
+        }
+    }
+
+    public void Move()
+    {
+
     }
 }
