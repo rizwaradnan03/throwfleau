@@ -6,37 +6,60 @@ public partial class Player : CharacterBody2D
 {
 	private bool isMoving = false;
 	private int speed = 200;
-
 	private AnimatedSprite2D _animatedSprite2D;
 
 	public void GetInput(double delta)
 	{
-		float x;
-		float y;
+		float x_direction = 0;
+		float y_direction = 0;
 
 		if (Input.IsActionPressed("move_up") || Input.IsActionPressed("move_down") || Input.IsActionPressed("move_right") || Input.IsActionPressed("move_left"))
 		{
-			if (Input.IsActionPressed("move_up"))
+			isMoving = true;
+			if (Input.IsActionPressed("move_up") || Input.IsActionPressed("move_down"))
 			{
-				isMoving = true;
-				_animatedSprite2D.Play("move_up");
+				y_direction = 0;
 
-				x += (float)(speed * delta);
+				if (Input.IsActionPressed("move_up"))
+				{
+					_animatedSprite2D.Play("move_up");
+
+					x_direction = (float)((speed * delta));
+				}
+				else if (Input.IsActionPressed("move_down"))
+				{
+					_animatedSprite2D.Play("move_down");
+
+					x_direction -= (float)(speed * delta);
+				}
 			}
-			else if (Input.IsActionPressed("move_down"))
+			else if (Input.IsActionPressed("move_right") || Input.IsActionPressed("move_left"))
 			{
-				x -= (float)(speed * delta);
-				isMoving = true;
+				x_direction = 0;
+
+				if (Input.IsActionPressed("move_right"))
+				{
+					y_direction = (float)(y_direction + (speed * delta));
+					_animatedSprite2D.Play("move_side");
+					_animatedSprite2D.FlipH = false;
+				}
+				else if (Input.IsActionPressed("move_left"))
+				{
+					y_direction = (float)(y_direction - (speed * delta));
+					_animatedSprite2D.Play("move_side");
+					_animatedSprite2D.FlipH = true;
+				}
 			}
 		}
 		else
 		{
 			isMoving = false;
+			_animatedSprite2D.Stop();
 		}
 
 		if (isMoving == true)
 		{
-			Velocity = new Godot.Vector2(x, y);
+			Velocity = new Godot.Vector2(x_direction, y_direction);
 
 			MoveAndSlide();
 		}
