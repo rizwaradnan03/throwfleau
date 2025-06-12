@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://1lswedin6t3u"
-path="res://.godot/imported/Splash.wav-3f1c7e0dc3400ea95f5e1e46e83e4a65.sample"
+uid="uid://b64o0ckta3n7i"
+path="res://.godot/imported/SharkEat.wav-fd89721bdf5cafd82ec928537fbb5cee.sample"
 
 [deps]
 
-source_file="res://assets/monsters/Splash.wav"
-dest_files=["res://.godot/imported/Splash.wav-3f1c7e0dc3400ea95f5e1e46e83e4a65.sample"]
+source_file="res://assets/old/monsters/SharkEat.wav"
+dest_files=["res://.godot/imported/SharkEat.wav-fd89721bdf5cafd82ec928537fbb5cee.sample"]
 
 [params]
 

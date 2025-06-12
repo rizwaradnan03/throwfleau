@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dls7fc6wc0oca"
-path="res://.godot/imported/Shark.png-7e7d12ab2756c55351b010805f8791b2.ctex"
+uid="uid://dpaqh2s0kpurf"
+path="res://.godot/imported/Missile02F.png-01f6537c4ba4074d8e00151fdd57beb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monsters/Shark.png"
-dest_files=["res://.godot/imported/Shark.png-7e7d12ab2756c55351b010805f8791b2.ctex"]
+source_file="res://assets/old/projectiles/Missile02F.png"
+dest_files=["res://.godot/imported/Missile02F.png-01f6537c4ba4074d8e00151fdd57beb6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr3lr6umf2nbo"
-path="res://.godot/imported/Missile02D.png-21bcb954252b645a3b6068a66d6806bb.ctex"
+uid="uid://dvmjsism5vmbp"
+path="res://.godot/imported/Zombie Apocalypse Tileset Reference.png-1f2f1467f6d8cb7fe698ce31485e91d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/projectiles/Missile02D.png"
-dest_files=["res://.godot/imported/Missile02D.png-21bcb954252b645a3b6068a66d6806bb.ctex"]
+source_file="res://assets/newest/Zombie Apocalypse Tileset Reference.png"
+dest_files=["res://.godot/imported/Zombie Apocalypse Tileset Reference.png-1f2f1467f6d8cb7fe698ce31485e91d2.ctex"]
 
 [params]
 
