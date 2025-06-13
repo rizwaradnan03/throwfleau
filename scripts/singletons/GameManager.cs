@@ -1,32 +1,21 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 public partial class GameManager : Node
 {
-    Dictionary<string, object> player = new Dictionary<string, object>
+    private StaticBody2D _selectedAddTroops;
+
+    public void SetTroops(StaticBody2D _character)
     {
-        {"health", 100},
-        {"isDead", false},
-    };
+        _selectedAddTroops = _character;
+    }
 
-    public bool DecrementHealth(int amount)
+    public StaticBody2D CheckTroops()
     {
-        int currentHealth = (int)player["health"];
+        return _selectedAddTroops;
+    }
 
-        currentHealth -= amount;
-        player["health"] = currentHealth;
-        bool current_is_dead = (bool)player["is_dead"];
-
-        if (currentHealth <= 0)
-        {
-            current_is_dead = true;
-        }
-        else
-        {
-            current_is_dead = false;
-        }
-
-        return current_is_dead;
+    public void ClearTroops()
+    {
+        _selectedAddTroops = null;
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Character
+public partial class Character : StaticBody2D
 {
     public string id;
     private int health;
