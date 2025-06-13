@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0gfmog8rira0"]
+
+[ext_resource type="Script" uid="uid://enyyrtb246m0" path="res://scripts/gui/AddTroops.cs" id="1_454ih"]
+[ext_resource type="Texture2D" uid="uid://dc60ym0bwj7ph" path="res://assets/Tiny Swords/UI/Buttons/Button_Blue.png" id="1_5612q"]
+[ext_resource type="Texture2D" uid="uid://dhggdthj7alpi" path="res://assets/Tiny Swords/UI/Buttons/Button_Blue_Pressed.png" id="2_ingae"]
+
+[node name="AddTroops" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_454ih")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_5612q")
+texture_pressed = ExtResource("2_ingae")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

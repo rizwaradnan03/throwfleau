@@ -11,6 +11,5 @@ public partial class Knight : StaticBody2D
 
     public override void _Process(double delta)
     {
-        GD.Print("Jelas Paling Tulus Sak Dunia");
     }
 }
