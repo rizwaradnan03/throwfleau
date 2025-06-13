@@ -3,21 +3,39 @@ using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
-    List<Character> troops = new List<Character>();
+    List<Character> allys = new List<Character>();
+    List<Character> hostiles = new List<Character>();
 
     public void CheckInsertCharacter()
     {
-        if (GameManager.Instance.CheckTroops() != null)
+        var _gameManager = GameManager.Instance.CheckCharacter();
+        if (_gameManager.selectedCharacter != null)
         {
-            Character newCharacter = new Character("ally", 100, 13);
-            troops.Add(newCharacter);
 
-            AddChild(GameManager.Instance.CheckTroops());
+            Character newCharacter = new Character(_gameManager.type, _gameManager.variant);
+            string characterType = newCharacter.Type();
+
+            if (characterType == "ally")
+            {
+                allys.Add(newCharacter);
+            }
+            else if (characterType == "hostile")
+            {
+                hostiles.Add(newCharacter);
+            }
+
+            AddChild(_gameManager.selectedCharacter);
         }
+    }
+
+    public void MoveCharacter()
+    {
+
     }
 
     public override void _Process(double delta)
     {
         CheckInsertCharacter();
+        MoveCharacter();
     }
 }

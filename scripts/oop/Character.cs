@@ -10,22 +10,26 @@ public partial class Character : StaticBody2D
     private string target;
     private int damage;
 
-    List<Character> targets = new List<Character>();
+    private List<Character> targets = new List<Character>();
 
-    public Character(string PType, int PHealth, int PDamage)
+    public Character(string PType, string PVariant)
     {
         id = Guid.NewGuid().ToString();
         type = PType;
-        health = PHealth;
-        damage = PDamage;
 
         if (PType == "ally")
         {
-            target = "hostile";
+            if (PVariant == "knight")
+            {
+                health = 100;
+            }
         }
         else if (PType == "hostile")
         {
-            target = "ally";
+            if (PVariant == "barrel_goblin")
+            {
+                health = 30;
+            }
         }
     }
 
@@ -37,6 +41,11 @@ public partial class Character : StaticBody2D
     public string Id()
     {
         return id;
+    }
+
+    public List<Character> Targets()
+    {
+        return targets;
     }
 
     public int Damage()
@@ -102,6 +111,15 @@ public partial class Character : StaticBody2D
 
     public void Move()
     {
+        if (targets.Count > 0)
+        {
+            Character nearestTarget = targets[0];
+            for (int i = 0; i < targets.Count; i++)
+            {
+                float x_point = targets[i].Position.X;
+                float y_point = targets[i].Position.Y;
+            }
+        }
 
     }
 }
