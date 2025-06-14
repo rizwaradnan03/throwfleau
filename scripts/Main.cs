@@ -39,14 +39,33 @@ public partial class Main : Node2D
         }
     }
 
+    public void RealizingTargetAndFindNearest()
+    {
+        for (int i = 0; i < allys.Count; i++)
+        {
+            allys[i].RealizingTarget(hostiles);
+            allys[i].FindNearestTarget();
+        }
+
+        for (int i = 0; i < hostiles.Count; i++)
+        {
+            hostiles[i].RealizingTarget(allys);
+            hostiles[i].FindNearestTarget();
+        }
+    }
+
     public void MoveCharacter()
     {
-
+        for (int i = 0; i < allys.Count; i++)
+        {
+            
+        }
     }
 
     public override void _Process(double delta)
     {
         CheckInsertCharacter();
+        RealizingTargetAndFindNearest();
         MoveCharacter();
     }
 }

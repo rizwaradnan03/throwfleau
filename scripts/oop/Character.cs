@@ -10,6 +10,8 @@ public partial class Character : StaticBody2D
     private string target;
     private int damage;
 
+    private Character nearestTarget;
+
     private List<Character> targets = new List<Character>();
 
     public Character()
@@ -71,39 +73,29 @@ public partial class Character : StaticBody2D
         return (checkIsDead, Id());
     }
 
-    public void RealizingTarget(Character[] currentTargets)
+    public void RealizingTarget(List<Character> currentTargets)
     {
-        for (int i = 0; i < currentTargets.Length; i++)
-        {
-            bool isFound = false;
-
-            for (int j = 0; j < targets.Count; j++)
-            {
-                if (targets[j].Id() == currentTargets[i].Id())
-                {
-                    isFound = true;
-                    break;
-                }
-            }
-
-            if (isFound == false)
-            {
-                targets.Add(currentTargets[i]);
-            }
-        }
+        targets = currentTargets;
     }
 
-    public void Move()
+    public void FindNearestTarget()
     {
         if (targets.Count > 0)
         {
-            Character nearestTarget = targets[0];
+            Character nearest = targets[0];
+            float distance = GlobalPosition.DistanceTo(nearest.GlobalPosition);
             for (int i = 0; i < targets.Count; i++)
             {
-                float x_point = targets[i].Position.X;
-                float y_point = targets[i].Position.Y;
-            }
-        }
+                float everyTargetDistance = GlobalPosition.DistanceTo(targets[i].GlobalPosition);
 
+                if (everyTargetDistance <= distance)
+                {
+                    nearest = targets[i];
+                    distance = everyTargetDistance;
+                }
+            }
+
+            nearestTarget = nearest;
+        }
     }
 }
