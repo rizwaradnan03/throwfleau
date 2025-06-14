@@ -3,39 +3,49 @@ using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
-    List<Character> allys = new List<Character>();
-    List<Character> hostiles = new List<Character>();
+	List<Character> allys = new List<Character>();
+	List<Character> hostiles = new List<Character>();
 
-    public void CheckInsertCharacter()
-    {
-        var _gameManager = GameManager.Instance.CheckCharacter();
-        if (_gameManager.selectedCharacter != null)
-        {
+	public void CheckInsertCharacter()
+	{
+		var _gameManager = GameManager.Instance.CheckCharacter();
+		if (_gameManager.selectedCharacter != null)
+		{
+			Character _character = null;
 
-            Character newCharacter = new Character(_gameManager.type, _gameManager.variant);
-            string characterType = newCharacter.Type();
+			if (_gameManager.variant == "knight")
+			{
+				_character = new Knight();
+			}
+			else if (_gameManager.variant == "barrel_goblin")
+			{
+				_character = new BarrelGoblin();
+			}
 
-            if (characterType == "ally")
-            {
-                allys.Add(newCharacter);
-            }
-            else if (characterType == "hostile")
-            {
-                hostiles.Add(newCharacter);
-            }
+			if (_gameManager.type == "ally")
+			{
+				allys.Add(_character);
+			}
+			else if (_gameManager.type == "hostile")
+			{
+				hostiles.Add(_character);
+			}
 
-            AddChild(_gameManager.selectedCharacter);
-        }
-    }
+			_gameManager.selectedCharacter.Name = _character.Id();
 
-    public void MoveCharacter()
-    {
+			AddChild(_gameManager.selectedCharacter);
+			GameManager.Instance.ClearCharacter();
+		}
+	}
 
-    }
+	public void MoveCharacter()
+	{
 
-    public override void _Process(double delta)
-    {
-        CheckInsertCharacter();
-        MoveCharacter();
-    }
+	}
+
+	public override void _Process(double delta)
+	{
+		CheckInsertCharacter();
+		MoveCharacter();
+	}
 }

@@ -12,25 +12,9 @@ public partial class Character : StaticBody2D
 
     private List<Character> targets = new List<Character>();
 
-    public Character(string PType, string PVariant)
+    public Character()
     {
         id = Guid.NewGuid().ToString();
-        type = PType;
-
-        if (PType == "ally")
-        {
-            if (PVariant == "knight")
-            {
-                health = 100;
-            }
-        }
-        else if (PType == "hostile")
-        {
-            if (PVariant == "barrel_goblin")
-            {
-                health = 30;
-            }
-        }
     }
 
     public int Health()
