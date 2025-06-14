@@ -3,49 +3,50 @@ using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
-	List<Character> allys = new List<Character>();
-	List<Character> hostiles = new List<Character>();
+    List<Character> allys = new List<Character>();
+    List<Character> hostiles = new List<Character>();
 
-	public void CheckInsertCharacter()
-	{
-		var _gameManager = GameManager.Instance.CheckCharacter();
-		if (_gameManager.selectedCharacter != null)
-		{
-			Character _character = null;
+    public void CheckInsertCharacter()
+    {
+        var _gameManager = GameManager.Instance.CheckCharacter();
+        if (_gameManager.selectedCharacter != null)
+        {
+            Character _character = null;
 
-			if (_gameManager.variant == "knight")
-			{
-				_character = new Knight();
-			}
-			else if (_gameManager.variant == "barrel_goblin")
-			{
-				_character = new BarrelGoblin();
-			}
+            if (_gameManager.type == "ally")
+            {
+                if (_gameManager.variant == "knight")
+                {
+                    _character = new Knight();
+                }
 
-			if (_gameManager.type == "ally")
-			{
-				allys.Add(_character);
-			}
-			else if (_gameManager.type == "hostile")
-			{
-				hostiles.Add(_character);
-			}
+                allys.Add(_character);
+            }
+            else if (_gameManager.type == "hostile")
+            {
+                if (_gameManager.variant == "barrel_goblin")
+                {
+                    _character = new BarrelGoblin();
+                }
 
-			_gameManager.selectedCharacter.Name = _character.Id();
+                hostiles.Add(_character);
+            }
 
-			AddChild(_gameManager.selectedCharacter);
-			GameManager.Instance.ClearCharacter();
-		}
-	}
+            _gameManager.selectedCharacter.Name = _character.Id();
 
-	public void MoveCharacter()
-	{
+            AddChild(_gameManager.selectedCharacter);
+            GameManager.Instance.ClearCharacter();
+        }
+    }
 
-	}
+    public void MoveCharacter()
+    {
 
-	public override void _Process(double delta)
-	{
-		CheckInsertCharacter();
-		MoveCharacter();
-	}
+    }
+
+    public override void _Process(double delta)
+    {
+        CheckInsertCharacter();
+        MoveCharacter();
+    }
 }
