@@ -3,6 +3,7 @@ using Godot;
 public partial class GameManager : Node
 {
     private StaticBody2D _selectedCharacter;
+    private string temporarySelectedCharacter;
     private string type;
     private string variant;
 
