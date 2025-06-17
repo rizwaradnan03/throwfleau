@@ -5,7 +5,7 @@ public partial class GameManager : Node
     private StaticBody2D _selectedCharacter;
     private string type;
     private string variant;
-    
+
     public static GameManager Instance { get; private set; }
 
     public override void _Ready()
@@ -13,11 +13,17 @@ public partial class GameManager : Node
         Instance = this;
     }
 
-    public void SetCharacters(StaticBody2D _character, string PType, string PVariant)
+    public void SetCharacters(string PVariant)
     {
-        _selectedCharacter = _character;
-        type = PType;
-        variant = PVariant;
+        Node troop = null;
+
+        if (PVariant == "knight")
+        {
+            troop = GD.Load<PackedScene>("res://objects/allys/knight.tscn").Instantiate();
+            variant = PVariant;
+            type = "ally";
+        }
+        _selectedCharacter = (StaticBody2D)troop;
     }
 
     public (StaticBody2D selectedCharacter, string type, string variant) CheckCharacter()
