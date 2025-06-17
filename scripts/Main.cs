@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
-	List<Character> allys = new List<Character>();
-	List<Character> hostiles = new List<Character>();
+	List<Character> existing_characters = new List<Character>();
 
 	public void CheckInsertCharacter()
 	{
@@ -13,23 +12,13 @@ public partial class Main : Node2D
 		{
 			Character _character = null;
 
-			if (_gameManager.type == "ally")
+			if (_gameManager.variant == "knight")
 			{
-				if (_gameManager.variant == "knight")
-				{
-					_character = new Knight();
-				}
-
-				allys.Add(_character);
+				_character = new Knight();
 			}
-			else if (_gameManager.type == "hostile")
+			else if (_gameManager.variant == "barrel_goblin")
 			{
-				if (_gameManager.variant == "barrel_goblin")
-				{
-					_character = new BarrelGoblin();
-				}
-
-				hostiles.Add(_character);
+				_character = new BarrelGoblin();
 			}
 
 			_gameManager.selectedCharacter.Name = _character.Id();
@@ -41,24 +30,39 @@ public partial class Main : Node2D
 
 	public void RealizingTargetAndFindNearest()
 	{
-		for (int i = 0; i < allys.Count; i++)
+		List<Character> allys = new List<Character>();
+		List<Character> hostiles = new List<Character>();
+
+		for (int i = 0; i < existing_characters.Count; i++)
 		{
-			allys[i].RealizingTarget(hostiles);
-			allys[i].FindNearestTarget();
+			if (existing_characters[i].Type() == "ally")
+			{
+				allys.Add(existing_characters[i]);
+			}
+			else
+			{
+				hostiles.Add(existing_characters[i]);
+			}
 		}
 
-		for (int i = 0; i < hostiles.Count; i++)
+		for (int i = 0; i < existing_characters.Count; i++)
 		{
-			hostiles[i].RealizingTarget(allys);
-			hostiles[i].FindNearestTarget();
+			if (existing_characters[i].Type() == "ally")
+			{
+				existing_characters[i].RealizingTarget(hostiles);
+			}
+			else
+			{
+				existing_characters[i].RealizingTarget(allys);
+			}
 		}
 	}
 
 	public void MoveCharacter()
 	{
-		for (int i = 0; i < allys.Count; i++)
+		for (int i = 0; i < existing_characters.Count; i++)
 		{
-			
+			existing_characters[i].FindNearestTarget();
 		}
 	}
 

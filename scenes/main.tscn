@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://xd0cfql6cmga"]
+[gd_scene load_steps=13 format=4 uid="uid://xd0cfql6cmga"]
 
 [ext_resource type="Script" uid="uid://cw3hr4hjqmivb" path="res://scripts/Main.cs" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://dnktgg7lavecp" path="res://assets/Tiny Swords/Terrain/Ground/Tilemap_Elevation.png" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d0t7t2mvfqvpm" path="res://objects/partials/water.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://d0gfmog8rira0" path="res://scenes/2d/add_troops.tscn" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://dvplhojqitapv" path="res://assets/Tiny Swords/Terrain/Ground/Tilemap_Flat.png" id="4_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://bkys3k52mccob" path="res://assets/audio/tresnotekanemati.wav" id="6_tefeu"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jyhfs"]
 resource_name = "CollidedWater"
@@ -1022,3 +1023,6 @@ offset_left = 287.0
 offset_top = 250.0
 offset_right = 287.0
 offset_bottom = 250.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tefeu")
