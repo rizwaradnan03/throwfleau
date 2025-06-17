@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dc60ym0bwj7ph" path="res://assets/Tiny Swords/UI/Buttons/Button_Blue.png" id="1_5612q"]
 [ext_resource type="Texture2D" uid="uid://dhggdthj7alpi" path="res://assets/Tiny Swords/UI/Buttons/Button_Blue_Pressed.png" id="2_ingae"]
 
-[node name="AddTroops" type="Control"]
+[node name="AddAlly" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

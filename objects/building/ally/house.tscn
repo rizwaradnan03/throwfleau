@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://debpdm3b114p"]
+
+[ext_resource type="Texture2D" uid="uid://c0jkfsei7fjvq" path="res://assets/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="1_a5miy"]
+
+[node name="House" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a5miy")

@@ -1,7 +1,7 @@
 using Godot;
 
 public partial class GameManager : Node
-{
+{   
     private StaticBody2D _selectedCharacter;
     private string temporarySelectedCharacter;
     private string type;
@@ -14,17 +14,28 @@ public partial class GameManager : Node
         Instance = this;
     }
 
+    public void SetTemporarySelectedCharacter(string PVariant)
+    {
+        // temporarySelectedCharacter = 
+    }
+
     public void SetCharacters(string PVariant)
     {
-        Node troop = null;
+        PackedScene packedTroop = null;
 
         if (PVariant == "knight")
         {
-            troop = GD.Load<PackedScene>("res://objects/allys/knight.tscn").Instantiate();
-            variant = PVariant;
+            packedTroop = GD.Load<PackedScene>("res://objects/allys/knight.tscn");
             type = "ally";
         }
-        _selectedCharacter = (StaticBody2D)troop;
+        else if (PVariant == "barrel_goblin")
+        {
+            packedTroop = GD.Load<PackedScene>("res://objects/hostiles/barrelgoblin.tscn");
+            type = "hostile";
+        }
+
+        variant = PVariant;
+        _selectedCharacter = (StaticBody2D)packedTroop.Instantiate();
     }
 
     public (StaticBody2D selectedCharacter, string type, string variant) CheckCharacter()
@@ -37,5 +48,6 @@ public partial class GameManager : Node
         _selectedCharacter = null;
         type = null;
         variant = null;
+        temporarySelectedCharacter = null;
     }
 }

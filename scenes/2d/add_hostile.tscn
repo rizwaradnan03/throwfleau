@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqntcpjuy5xx7"]
+
+[ext_resource type="Script" uid="uid://c6t7m0gntom0d" path="res://scripts/gui/AddHostile.cs" id="1_3x1pc"]
+[ext_resource type="Texture2D" uid="uid://bh22jyd8qdbtk" path="res://assets/Tiny Swords/UI/Buttons/Button_Red.png" id="1_t6fvc"]
+[ext_resource type="Texture2D" uid="uid://5tixmwayg28g" path="res://assets/Tiny Swords/UI/Buttons/Button_Red_Pressed.png" id="2_r2vsg"]
+
+[node name="AddHostile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3x1pc")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_t6fvc")
+texture_pressed = ExtResource("2_r2vsg")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
