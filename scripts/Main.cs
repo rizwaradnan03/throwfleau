@@ -1,9 +1,11 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
 	List<Node2D> existing_ally_sp = new List<Node2D>();
+	List<Node2D> existing_hostile_sp = new List<Node2D>();
 	List<Character> existing_characters = new List<Character>();
 
 	public override void _Ready()
@@ -22,6 +24,9 @@ public partial class Main : Node2D
 		var _gameManager = GameManager.Instance.CheckCharacter();
 		if (_gameManager.selectedCharacter != null)
 		{
+			Random rnd = new Random();
+			int randomizeSpawnPoint;
+
 			Character _character = null;
 
 			if (_gameManager.variant == "knight")
@@ -33,8 +38,18 @@ public partial class Main : Node2D
 				_character = new BarrelGoblin();
 			}
 
+			if (_gameManager.type == "ally")
+			{
+				randomizeSpawnPoint = rnd.Next(0, existing_ally_sp.Count);
+				_gameManager.selectedCharacter.Position = existing_ally_sp[randomizeSpawnPoint].Position;
+			}
+			else if (_gameManager.type == "hostile")
+			{
+				randomizeSpawnPoint = rnd.Next(0, existing_hostile_sp.Count);
+				_gameManager.selectedCharacter.Position = existing_hostile_sp[randomizeSpawnPoint].Position;
+			}
+
 			_gameManager.selectedCharacter.Name = _character.Id();
-			_gameManager.selectedCharacter.Position = existing_ally_sp[0].Position;
 
 			AddChild(_gameManager.selectedCharacter);
 			GameManager.Instance.ClearCharacter();
