@@ -45,13 +45,18 @@ public partial class Main : Node2D
 			}
 			else if (_gameManager.type == "hostile")
 			{
-				randomizeSpawnPoint = rnd.Next(0, existing_hostile_sp.Count);
-				_gameManager.selectedCharacter.Position = existing_hostile_sp[randomizeSpawnPoint].Position;
+				// randomizeSpawnPoint = rnd.Next(0, existing_hostile_sp.Count);
+				// _gameManager.selectedCharacter.Position = existing_hostile_sp[randomizeSpawnPoint].Position;
+
+				randomizeSpawnPoint = rnd.Next(0, existing_ally_sp.Count);
+				_gameManager.selectedCharacter.Position = existing_ally_sp[randomizeSpawnPoint].Position;
+
 			}
 
 			_gameManager.selectedCharacter.Name = _character.Id();
 
 			AddChild(_gameManager.selectedCharacter);
+			existing_characters.Add(_character);
 			GameManager.Instance.ClearCharacter();
 		}
 	}
@@ -67,8 +72,8 @@ public partial class Main : Node2D
 			{
 				allys.Add(existing_characters[i]);
 			}
-			else
-			{
+			else if(existing_characters[i].Type() == "hostile")
+			{	
 				hostiles.Add(existing_characters[i]);
 			}
 		}
@@ -83,6 +88,7 @@ public partial class Main : Node2D
 			{
 				existing_characters[i].RealizingTarget(allys);
 			}
+
 		}
 	}
 
@@ -90,6 +96,7 @@ public partial class Main : Node2D
 	{
 		for (int i = 0; i < existing_characters.Count; i++)
 		{
+			GD.Print(existing_characters[i].Targets().Count);
 			existing_characters[i].FindNearestTarget();
 		}
 	}

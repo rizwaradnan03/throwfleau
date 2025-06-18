@@ -96,6 +96,8 @@ public partial class Character : StaticBody2D
             }
 
             nearestTarget = nearest;
+
+            GD.Print("Nearest Target : ", nearestTarget);
         }
     }
 }
