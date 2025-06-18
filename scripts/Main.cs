@@ -3,7 +3,19 @@ using System.Collections.Generic;
 
 public partial class Main : Node2D
 {
+	List<Node2D> existing_ally_sp = new List<Node2D>();
 	List<Character> existing_characters = new List<Character>();
+
+	public override void _Ready()
+	{
+		Node ally_house_res = GD.Load<PackedScene>("res://objects/building/ally/house.tscn").Instantiate();
+		Node2D ally_house_instance = (Node2D)ally_house_res;
+
+		ally_house_instance.Position = new Vector2(-28, -280);
+		existing_ally_sp.Add(ally_house_instance);
+
+		AddChild(ally_house_instance);
+	}
 
 	public void CheckInsertCharacter()
 	{
@@ -22,6 +34,7 @@ public partial class Main : Node2D
 			}
 
 			_gameManager.selectedCharacter.Name = _character.Id();
+			_gameManager.selectedCharacter.Position = existing_ally_sp[0].Position;
 
 			AddChild(_gameManager.selectedCharacter);
 			GameManager.Instance.ClearCharacter();
