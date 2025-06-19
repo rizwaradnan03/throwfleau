@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using Godot;
 
 public partial class Knight : Character
 {
-    public Knight()
+    public Knight(string Ptype) : base(Ptype)
     {
-
+        
     }
 }

@@ -14,8 +14,9 @@ public partial class Character : StaticBody2D
 
     private List<Character> targets = new List<Character>();
 
-    public Character()
+    public Character(string Ptype)
     {
+        type = Ptype;
         id = Guid.NewGuid().ToString();
     }
 

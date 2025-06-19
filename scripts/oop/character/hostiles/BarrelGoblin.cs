@@ -4,8 +4,8 @@ using Godot;
 
 public partial class BarrelGoblin : Character
 {
-    public BarrelGoblin()
+    public BarrelGoblin(string Ptype): base(Ptype)
     {
-
+        
     }
 }

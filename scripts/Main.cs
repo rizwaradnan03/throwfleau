@@ -31,11 +31,11 @@ public partial class Main : Node2D
 
 			if (_gameManager.variant == "knight")
 			{
-				_character = new Knight();
+				_character = new Knight("ally");
 			}
 			else if (_gameManager.variant == "barrel_goblin")
 			{
-				_character = new BarrelGoblin();
+				_character = new BarrelGoblin("hostile");
 			}
 
 			if (_gameManager.type == "ally")
@@ -70,6 +70,8 @@ public partial class Main : Node2D
 		{
 			if (existing_characters[i].Type() == "ally")
 			{
+				GD.Print("Yang Tipenya Ally : ", existing_characters[i]);
+
 				allys.Add(existing_characters[i]);
 			}
 			else if(existing_characters[i].Type() == "hostile")
