@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class Character : StaticBody2D
+public partial class Character : CharacterBody2D
 {
     public string id;
     private int health;
     private string type;
     private string target;
     private int damage;
-
-    private Character nearestTarget;
+    protected double movementRange = 0.02;
 
     private List<Character> targets = new List<Character>();
 
@@ -44,6 +43,13 @@ public partial class Character : StaticBody2D
     {
         return type;
     }
+
+    public double GetMovementRange()
+    {
+        return movementRange;
+    }
+
+    public virtual void SetMovementRange() { }
 
     public string Target()
     {
@@ -79,7 +85,7 @@ public partial class Character : StaticBody2D
         targets = currentTargets;
     }
 
-    public void FindNearestTarget()
+    public void FindNearestTargetAndMove()
     {
         if (targets.Count > 0)
         {
@@ -96,9 +102,29 @@ public partial class Character : StaticBody2D
                 }
             }
 
-            nearestTarget = nearest;
+            double x_pos = 0;
+            double y_pos = 0;
 
-            GD.Print("Nearest Target : ", nearestTarget);
+            if (nearest.Position.X >= Position.X)
+            {
+                x_pos += movementRange;
+            }
+            else if (nearest.Position.X <= Position.X)
+            {
+                x_pos -= movementRange;
+            }
+
+            if (nearest.Position.Y >= Position.Y)
+            {
+                y_pos += movementRange;
+            }
+            else if (nearest.Position.Y <= Position.Y)
+            {
+                y_pos -= movementRange;
+            }
+
+            Velocity = new Godot.Vector2((float)x_pos, (float)y_pos);
+            MoveAndSlide();
         }
     }
 }

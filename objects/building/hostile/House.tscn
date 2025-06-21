@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck275o4gdpnxx"]
+
+[ext_resource type="Texture2D" uid="uid://pk6whvh20hxb" path="res://assets/Tiny Swords/Factions/Goblins/Buildings/Wood_House/Goblin_House.png" id="1_qmwf2"]
+
+[node name="House" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qmwf2")

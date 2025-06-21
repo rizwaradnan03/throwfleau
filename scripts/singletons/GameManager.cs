@@ -2,7 +2,7 @@ using Godot;
 
 public partial class GameManager : Node
 {   
-	private StaticBody2D _selectedCharacter;
+	private CharacterBody2D _selectedCharacter;
 	private string temporarySelectedCharacter;
 	private string type;
 	private string variant;
@@ -35,10 +35,10 @@ public partial class GameManager : Node
 		}
 
 		variant = PVariant;
-		_selectedCharacter = (StaticBody2D)packedTroop.Instantiate();
+		_selectedCharacter = (CharacterBody2D)packedTroop.Instantiate();
 	}
 
-	public (StaticBody2D selectedCharacter, string type, string variant) CheckCharacter()
+	public (CharacterBody2D selectedCharacter, string type, string variant) CheckCharacter()
 	{
 		return (_selectedCharacter, type, variant);
 	}

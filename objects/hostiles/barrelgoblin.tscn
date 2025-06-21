@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://davsvb3rqa4p8"]
+[gd_scene load_steps=15 format=3 uid="uid://davsvb3rqa4p8"]
 
 [ext_resource type="Texture2D" uid="uid://b8c8h4k8lq52e" path="res://assets/Tiny Swords/Factions/Goblins/Troops/Barrel/Red/Barrel_Red.png" id="1_vwqf5"]
 
@@ -92,8 +92,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BarrelGoblin" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwqf5"]
+size = Vector2(45, 50)
+
+[node name="BarrelGoblin" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x34m6")
 animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_vwqf5")

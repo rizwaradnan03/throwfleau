@@ -13,10 +13,16 @@ public partial class Main : Node2D
 		Node ally_house_res = GD.Load<PackedScene>("res://objects/building/ally/house.tscn").Instantiate();
 		Node2D ally_house_instance = (Node2D)ally_house_res;
 
+		Node hostile_house_res = GD.Load<PackedScene>("res://objects/building/hostile/house.tscn").Instantiate();
+		Node2D hostile_house_instance = (Node2D)hostile_house_res;
+
 		ally_house_instance.Position = new Vector2(-28, -280);
+		hostile_house_instance.Position = new Vector2(28, 280);
 		existing_ally_sp.Add(ally_house_instance);
+		existing_hostile_sp.Add(hostile_house_instance);
 
 		AddChild(ally_house_instance);
+		AddChild(hostile_house_instance);
 	}
 
 	public void CheckInsertCharacter()
@@ -45,12 +51,8 @@ public partial class Main : Node2D
 			}
 			else if (_gameManager.type == "hostile")
 			{
-				// randomizeSpawnPoint = rnd.Next(0, existing_hostile_sp.Count);
-				// _gameManager.selectedCharacter.Position = existing_hostile_sp[randomizeSpawnPoint].Position;
-
-				randomizeSpawnPoint = rnd.Next(0, existing_ally_sp.Count);
-				_gameManager.selectedCharacter.Position = existing_ally_sp[randomizeSpawnPoint].Position;
-
+				randomizeSpawnPoint = rnd.Next(0, existing_hostile_sp.Count);
+				_gameManager.selectedCharacter.Position = existing_hostile_sp[randomizeSpawnPoint].Position;
 			}
 
 			_gameManager.selectedCharacter.Name = _character.Id();
@@ -70,8 +72,6 @@ public partial class Main : Node2D
 		{
 			if (existing_characters[i].Type() == "ally")
 			{
-				GD.Print("Yang Tipenya Ally : ", existing_characters[i]);
-
 				allys.Add(existing_characters[i]);
 			}
 			else if(existing_characters[i].Type() == "hostile")
@@ -98,8 +98,7 @@ public partial class Main : Node2D
 	{
 		for (int i = 0; i < existing_characters.Count; i++)
 		{
-			GD.Print(existing_characters[i].Targets().Count);
-			existing_characters[i].FindNearestTarget();
+			existing_characters[i].FindNearestTargetAndMove();
 		}
 	}
 
